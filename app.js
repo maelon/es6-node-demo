@@ -1,13 +1,10 @@
-import http from 'http';
+/**
+ * **************************************************************************************** *
+ * app启动入口                                                                              *
+ * src为源码，使用es6，开发环境使用babel-node进行实时编译，在此之前使用eslint进行代码检测   *
+ * dist为babel编译后的es5文件，可以生产环境执行                                             *
+ * **************************************************************************************** *
+*/
 
-import a from './src/index.js';
-
-console.log(a + 1);
-
-http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Hello World\n');
-}).listen(8000, 'localhost');
-
-console.log('Server running at http://localhost:8000/');
-console.log(process.env.NODE_ENV);
+const app = process.env.NODE_ENV === 'development' ? require('./src/index') : require('./dist/index');
+app.default.start();

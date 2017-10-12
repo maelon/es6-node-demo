@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app --exec 'eslint app.js src && babel-node app.js --debug --presets env'",
     "debug": "nodemon app --exec 'eslint app.js src --rule \"no-debugger: off\" && babel-node debug app.js --presets env'",
-    "build": "babel src --out-dir dist --presets env",
+    "build": "rm -rf ./dist/ && babel src --out-dir dist --presets env",
+    "server": "node app.js",
     "lint": "eslint app.js src"
   },
   "repository": {
@@ -17,6 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^2.5.7",
     "express": "^4.16.2",
     "log4js": "^2.3.4"
   },
@@ -36,7 +38,7 @@
       "NODE_ENV": "development"
     },
     "execMap": {
-      "": "node --debug", 
+      "": "node --debug",
       "js": "node --debug"
     },
     "watch": [
@@ -61,6 +63,20 @@
     "env": {
       "node": true
     },
-    "extends": "airbnb-base/legacy"
+    "extends": "airbnb-base/legacy",
+    "rules": {
+      "indent": [
+        "error",
+        4
+      ],
+      "global-require": 0,
+      "radix": 0,
+      "no-plusplus": [
+        "error",
+        {
+          "allowForLoopAfterthoughts": true
+        }
+      ]
+    }
   }
 }
