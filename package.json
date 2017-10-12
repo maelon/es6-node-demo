@@ -1,0 +1,66 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app --exec 'eslint app.js src && babel-node app.js --debug --presets env'",
+    "debug": "nodemon app --exec 'eslint app.js src --rule \"no-debugger: off\" && babel-node debug app.js --presets env'",
+    "build": "babel src --out-dir dist --presets env",
+    "lint": "eslint app.js src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maelon/es6-node-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "log4js": "^2.3.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-eslint": "^8.0.1",
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb-base": "^12.0.2",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.7.0",
+    "mocha": "^4.0.1",
+    "nodemon": "^1.12.1"
+  },
+  "nodemonConfig": {
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "execMap": {
+      "": "node --debug", 
+      "js": "node --debug"
+    },
+    "watch": [
+      "src/",
+      "app.js"
+    ],
+    "ignore": [
+      ".git",
+      ".idea",
+      "node_modules"
+    ]
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "env": {
+      "node": true
+    },
+    "extends": "airbnb-base/legacy"
+  }
+}
